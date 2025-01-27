@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import CustomCheckbox from './CustomCheckbox'; 
+import CustomCheckbox from './CustomCheckbox';
 
 function OrderForm({ goToPage, setOrderData }) {
   const [name, setName] = useState('');
@@ -51,110 +51,152 @@ function OrderForm({ goToPage, setOrderData }) {
     }
   };
 
+  const buttonStyle = {
+    padding: "0.5rem 1rem",
+    fontSize: "1rem",
+    backgroundColor: "#FDC913",
+    border: "none",
+    borderRadius: "5px",
+    cursor: "pointer",
+    marginTop: "0.5rem",
+  };
+
+  const headerStyle = {
+    backgroundColor: "#CE2829", // Kırmızı arka plan
+    color: "white", // Beyaz yazı rengi
+    padding: "1rem",
+    textAlign: "center",
+    fontSize: "1.5rem",
+    fontWeight: "bold",
+  };
+
+  const headerButtonStyle = {
+    color: "white", // Buton yazı rengi beyaz
+    textDecoration: "none", // Alt çizgi olmaması için
+    backgroundColor: "#FDC913",
+    padding: "0.5rem 1rem",
+    borderRadius: "5px",
+    marginTop: "1rem",
+    display: "inline-block",
+    fontSize: "1rem",
+    cursor: "pointer",
+    border: "none",
+  };
+
   return (
-    <form onSubmit={handleSubmit}>
-      <div>
-        <label>İsim:</label>
-        <input
-          type="text"
-          value={name}
-          onChange={(e) => setName(e.target.value)}
-          required
-        />
+    <div>
+      {/* Header */}
+      <div style={headerStyle}>
+        <h1 style={{ margin: 0 }}>Teknolojik Yemekler</h1>
+        <button onClick={() => goToPage("home")} style={headerButtonStyle}>
+          Anasayfa
+        </button>
       </div>
-      <div>
-        <label>Pizza Boyutu:</label>
-        <select value={size} onChange={(e) => setSize(e.target.value)} required>
-          <option value="">Seçin</option>
-          <option value="küçük">Küçük</option>
-          <option value="orta">Orta</option>
-          <option value="büyük">Büyük</option>
-        </select>
+
+      {/* İçerik */}
+      <div style={{ textAlign: "center", padding: "2rem" }}>
+        <p>KOD ACIKTIRIR PIZZA, DOYURUR</p>
+
+        <form onSubmit={handleSubmit}>
+          <div>
+            <label>İsim:</label>
+            <input
+              type="text"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+              required
+            />
+          </div>
+          <div>
+            <label>Pizza Boyutu:</label>
+            <select value={size} onChange={(e) => setSize(e.target.value)} required>
+              <option value="">Seçin</option>
+              <option value="küçük">Küçük</option>
+              <option value="orta">Orta</option>
+              <option value="büyük">Büyük</option>
+            </select>
+          </div>
+          <div>
+            <label>Malzemeler:</label>
+            <div style={{
+              display: 'grid',
+              gridTemplateColumns: 'repeat(3, 1fr)',
+              gap: '16px',
+              alignItems: 'center',
+            }}>
+              <CustomCheckbox
+                label="Pepperoni"
+                checked={toppings.Pepperoni}
+                onChange={() => handleCheckboxChange('Pepperoni')}
+              />
+              <CustomCheckbox
+                label="Sucuk"
+                checked={toppings.Sucuk}
+                onChange={() => handleCheckboxChange('Sucuk')}
+              />
+              <CustomCheckbox
+                label="Mantar"
+                checked={toppings.Mantar}
+                onChange={() => handleCheckboxChange('Mantar')}
+              />
+              <CustomCheckbox
+                label="Sarımsak"
+                checked={toppings.Sarimsak}
+                onChange={() => handleCheckboxChange('Sarimsak')}
+              />
+              <CustomCheckbox
+                label="Tavuk Izgara"
+                checked={toppings.TavukIzgara}
+                onChange={() => handleCheckboxChange('TavukIzgara')}
+              />
+              <CustomCheckbox
+                label="Mısır"
+                checked={toppings.Misir}
+                onChange={() => handleCheckboxChange('Misir')}
+              />
+              <CustomCheckbox
+                label="Ananas"
+                checked={toppings.Ananas}
+                onChange={() => handleCheckboxChange('Ananas')}
+              />
+              <CustomCheckbox
+                label="Kanada Jambonu"
+                checked={toppings.KanadaJambonu}
+                onChange={() => handleCheckboxChange('KanadaJambonu')}
+              />
+              <CustomCheckbox
+                label="Domates"
+                checked={toppings.Domates}
+                onChange={() => handleCheckboxChange('Domates')}
+              />
+              <CustomCheckbox
+                label="Biber"
+                checked={toppings.Biber}
+                onChange={() => handleCheckboxChange('Biber')}
+              />
+              <CustomCheckbox
+                label="Kabak"
+                checked={toppings.Kabak}
+                onChange={() => handleCheckboxChange('Kabak')}
+              />
+              <CustomCheckbox
+                label="Sosis"
+                checked={toppings.Sosis}
+                onChange={() => handleCheckboxChange('Sosis')}
+              />
+            </div>
+          </div>
+          <div>
+            <label>Özel Notlar:</label>
+            <textarea
+              value={notes}
+              onChange={(e) => setNotes(e.target.value)}
+            />
+          </div>
+          <button type="submit">Sipariş Ver</button>
+        </form>
       </div>
-      <div>
-        <label>Malzemeler:</label>
-        <div style={{
-          display: 'grid',
-          gridTemplateColumns: 'repeat(3, 1fr)',
-          gap: '16px',
-          alignItems: 'center',
-        }}>
-          <CustomCheckbox
-            label="Pepperoni"
-            checked={toppings.Pepperoni}
-            onChange={() => handleCheckboxChange('Pepperoni')}
-          />
-          <CustomCheckbox
-            label="Sucuk"
-            checked={toppings.Sucuk}
-            onChange={() => handleCheckboxChange('Sucuk')}
-          />
-          <CustomCheckbox
-            label="Mantar"
-            checked={toppings.Mantar}
-            onChange={() => handleCheckboxChange('Mantar')}
-          />
-          <CustomCheckbox
-            label="Sarımsak"
-            checked={toppings.Sarimsak}
-            onChange={() => handleCheckboxChange('Sarimsak')}
-          />
-          <CustomCheckbox
-            label="Tavuk Izgara"
-            checked={toppings.TavukIzgara}
-            onChange={() => handleCheckboxChange('TavukIzgara')}
-          />
-          <CustomCheckbox
-            label="Mısır"
-            checked={toppings.Misir}
-            onChange={() => handleCheckboxChange('Misir')}
-          />
-          <CustomCheckbox
-            label="Ananas"
-            checked={toppings.Ananas}
-            onChange={() => handleCheckboxChange('Ananas')}
-          />
-          <CustomCheckbox
-            label="Kanada Jambonu"
-            checked={toppings.KanadaJambonu}
-            onChange={() => handleCheckboxChange('KanadaJambonu')}
-          />
-          <CustomCheckbox
-            label="Domates"
-            checked={toppings.Domates}
-            onChange={() => handleCheckboxChange('Domates')}
-          />
-          <CustomCheckbox
-            label="Biber"
-            checked={toppings.Biber}
-            onChange={() => handleCheckboxChange('Biber')}
-          />
-          <CustomCheckbox
-            label="Kabak"
-            checked={toppings.Kabak}
-            onChange={() => handleCheckboxChange('Kabak')}
-          />
-          <CustomCheckbox
-            label="Soğan"
-            checked={toppings.Sogan}
-            onChange={() => handleCheckboxChange('Sogan')}
-          />
-          <CustomCheckbox
-            label="Sosis"
-            checked={toppings.Sosis}
-            onChange={() => handleCheckboxChange('Sosis')}
-          />
-        </div>
-      </div>
-      <div>
-        <label>Özel Notlar:</label>
-        <textarea
-          value={notes}
-          onChange={(e) => setNotes(e.target.value)}
-        />
-      </div>
-      <button type="submit">Sipariş Ver</button>
-    </form>
+    </div>
   );
 }
 
