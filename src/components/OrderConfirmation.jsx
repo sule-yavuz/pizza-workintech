@@ -44,7 +44,7 @@ function OrderConfirmation({ orderData }) {
       </h3>
 
       {orderData ? (
-        <div style={{ marginTop: "1.5rem", textAlign: "left", maxWidth: "90%", width: "100%" }}>
+        <div style={{ marginTop: "1.5rem", textAlign: "center", maxWidth: "90%", width: "100%" }}>
           <p><strong>Boyut:</strong> {orderData.size}</p>
           <p><strong>Hamur:</strong> {orderData.dough}</p>
           <p><strong>Malzemeler:</strong> {orderData.toppings.join(", ")}</p>
@@ -55,7 +55,7 @@ function OrderConfirmation({ orderData }) {
         <p>Bir hata oluştu.</p>
       )}
 
-      <div style={{ marginTop: "1.5rem", textAlign: "left", maxWidth: "90%", width: "100%" }}>
+      <div style={{ marginTop: "1.5rem", textAlign: "center", maxWidth: "90%", width: "100%" }}>
         <h3 style={{ margin: "1rem 0", fontSize: "1.5rem" }}>SİPARİŞ TOPLAMI</h3>
         <p style={{ margin: "0.5rem 0" }}><strong>Seçimler:</strong> 25.00₺</p>
         <p style={{ margin: "0.5rem 0" }}><strong>Toplam:</strong> 110.50₺</p>
